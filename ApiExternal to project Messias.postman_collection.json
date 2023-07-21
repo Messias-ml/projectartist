@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "cec8b62b-7c92-4c70-afc2-75b30060254c",
+		"name": "ApiExternal to project Messias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Artists setlist.fm",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "sCaf51dZG3wiKTKL3INgr61_eJ_mts8Hy7yt",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "sCaf51dZG3wiKTKL3INgr61_eJ_mts8Hy7yt",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.setlist.fm/rest/1.0/search/artists?artistName=Jhon&p=2",
+					"protocol": "https",
+					"host": [
+						"api",
+						"setlist",
+						"fm"
+					],
+					"path": [
+						"rest",
+						"1.0",
+						"search",
+						"artists"
+					],
+					"query": [
+						{
+							"key": "artistName",
+							"value": "Jhon"
+						},
+						{
+							"key": "p",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "sortName",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get SetList setlist.fm",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "sCaf51dZG3wiKTKL3INgr61_eJ_mts8Hy7yt",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.setlist.fm/rest/1.0/artist/661e20c8-3d82-4da2-94a2-97d9e11691c0/setlists?p=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"setlist",
+						"fm"
+					],
+					"path": [
+						"rest",
+						"1.0",
+						"artist",
+						"661e20c8-3d82-4da2-94a2-97d9e11691c0",
+						"setlists"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Detail Artist last.fm",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=661e20c8-3d82-4da2-94a2-97d9e11691c0&api_key=ca4421b53f1220bc53bade326a1fec22&format=json&lang=pt",
+					"protocol": "http",
+					"host": [
+						"ws",
+						"audioscrobbler",
+						"com"
+					],
+					"path": [
+						"2.0",
+						""
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "artist.getinfo"
+						},
+						{
+							"key": "mbid",
+							"value": "661e20c8-3d82-4da2-94a2-97d9e11691c0"
+						},
+						{
+							"key": "api_key",
+							"value": "ca4421b53f1220bc53bade326a1fec22"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "lang",
+							"value": "pt"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

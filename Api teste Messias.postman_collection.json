@@ -1,0 +1,27 @@
+{
+	"info": {
+		"_postman_id": "21606964-a05f-4faf-a01c-f552db74e55d",
+		"name": "Api teste Messias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Artists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get Complete Detail Artist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
