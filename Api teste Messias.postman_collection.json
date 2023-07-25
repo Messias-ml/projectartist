@@ -9,8 +9,40 @@
 			"name": "Get All Artists",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": null
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "sCaf51dZG3wiKTKL3INgr61_eJ_mts8Hy7yt",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/artist?nameArtist=Jhon&page=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artist"
+					],
+					"query": [
+						{
+							"key": "nameArtist",
+							"value": "Jhon"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +51,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:8080/artist/661e20c8-3d82-4da2-94a2-97d9e11691c0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artist",
+						"661e20c8-3d82-4da2-94a2-97d9e11691c0"
+					]
+				}
 			},
 			"response": []
 		}
