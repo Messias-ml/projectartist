@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfiguration implements WebMvcConfigurer {
-    public static final String LOCAL = "http://localhost:3000";
+    public static final String LOCAL = "http://localhost:8081";
 
     @Autowired
     private Environment environment;
