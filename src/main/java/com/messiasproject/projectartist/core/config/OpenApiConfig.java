@@ -20,6 +20,10 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 @Server(
                         description = "local server",
                         url = "http://localhost:8080/artist"
+                ),
+                @Server(
+                        description = "prodution server",
+                        url = "http://producaoMesias/artist"
                 )
         }
 )

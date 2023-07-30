@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static com.messiasproject.projectartist.core.config.RestTemplateConfig.getRestTemplate;
 import static com.messiasproject.projectartist.core.config.RestTemplateConfig.getRestTemplateLast;
 
@@ -32,7 +35,10 @@ public class ArtistImplementationService implements ArtistDetail, SearchArtists 
     @Override
     public ListArtistModel findArtists(String nameArtist, Integer page) {
         String urlExternalAPI = String.format(urlArtistSetList, nameArtist, page);
-        return restTemplate.getForObject(urlExternalAPI, ListArtistModel.class);
+        ListArtistModel listArtistModel = restTemplate.getForObject(urlExternalAPI, ListArtistModel.class);
+        BigDecimal pageDivisor = listArtistModel.getTotal().divide(BigDecimal.valueOf(30), RoundingMode.UP);
+        listArtistModel.setTotalPage(Integer.parseInt(String.valueOf(pageDivisor)));
+        return listArtistModel;
     }
 
     @Override
