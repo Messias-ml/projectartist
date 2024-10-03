@@ -31,53 +31,48 @@ Api teste Messias.postman_collection.json
 Alguns exemplos de utilizações PELAS INICIAIS DO SOLID. </p>
 
 <h3 style="color: blue">S- Single Responsiblity Principle </h3>
-<p> Principio da responsabilidade unica. Cada metodo tem suas responsabilidades. <br> Exemplo:</p>
+<p> Principio da responsabilidade unica. Cada classe, metodo tem de ter suas responsabilidades únicas. <br> Exemplo:</p>
 
 ![Simple Page Aplication, methods.png](imgProject%2FSimple%20Page%20Aplication%2C%20methods.png)
->Como pode ver cada metodo tem suas responsabilidades muito bem definidas e UNICAS acima de tudo.
->> serchArtists apenas busca artistas, seja da maneira que for, tem a função de pesquisar por artistas e o metodo que utilizamos dele encontra esses artistas.
+>A classe <b>SerchArtists</b>  tem a unica responsabilidade de pesquisar artistas.
+>> Conforme mostra na imagem, o atributo <b> serchArtists </b> exemplifica isso, utilizando o metodo dele que encontra esses artistas.
+> 
+>Já o outro <b>(artistDetail)</b>, mostra os detalhes de um determinado artista, como o proprio nome indica. Utilizamos um metodo dele para adiquirir esses.
+> 
+> <b style=color:red>OBSERVAÇÃO:</b> Apesar das classes terem relação entre si, (ambas diz sobre ARTIST) cada uma tem a sua devida responsabilidade e por isso deve ser separada, como foi corretamente. 
 
->>Já o outro, mostra os detalhes de um determinado artista, como o proprio nome indica. Utilizamos um metodo dele para adiquirir detalhes de um determinado artista.
-
->Como vimos, ambos metodós com responsabilidades unicas, veremos as interfaces agora, para mostrar ainda mais a aplicabilidade desse principio.
-![interface_search_artists.png](imgProject%2Finterface_search_artists.png)
+>Vou mostrar as interfaces agora, para que possa ver ainda mais a aplicabilidade desse principio.
+>
+>![interface_search_artists.png](imgProject%2Finterface_search_artists.png)
 > 
 > ![interface_findArtist.png](imgProject%2Finterface_findArtist.png)
 > 
 > Ambas interfaces separadas e com **RESPONSABILIDADES UNICAS**
 
 >**BENEFICIO NA UTILIZAÇÃO DESTE PRINCIPIO:**
->> Codigo mais limpo e legível.
-> 
->> Separação de responsabilidade, fortalecendo o clean code.
-> 
->> Facilita manutenção no código. No caso das imagens mostradas, caso tivesse que fazer manutenção seria somente no metodo responsavél.
->> sendo assim, qualquer outro lugar que eu usasse esses metodos não precisaria mexer. Exemplo:
->>> Caso eu utilize o metodo findArtists do serchArtists em outros services e futuramente queira modificar este codigo, mexeria apenas na implementação dele e todos os outros services estariam intactos
->>> so modificariamos 1 lugar apesar de ser usado em vários.
+>
+> - Codigo limpo
+> - Manutenção facilitada
+> - Menos complexidade em testes
 
 <h3 style = "color: yellow">O-Open-Closed Principle</h3>
-<p>Este principio diz que devemos estar aberto para extensão e fechados para modificação e é justamente oque acontece neste codigo.<br/>
+<p>Entidades de software (classes, módulos, funções, etc.) devem estar abertas para extensão, mas fechadas para modificação e é justamente o que acontece nesse codigo.<br/>
 Exemplo:</p>
 
-> **SERVICE**
+> **SearchArtists**
 > 
-> ![ArtistsService.png](imgProject%2FArtistsService.png)
+> Essa classe está fechada para mudança, mas nada impede dela expandir.
 > 
-> Claramente o nosso service está fechado para alteração, póis ele utiliza metodos externos que tem a responsabilidade de fazer de executar a funcionalidade de fato.
-> Vamos ao exemplo:
+> ![SearchArtists.png](imgProject%2FSearchArtists.png)
 > 
-> ![LocalImplementationService.png](imgProject%2FLocalImplementationService.png)
-> 
-> Nesta classe que está a implementação dos metodos, mas ela pode mudar, ou aumentar, ter mais metodos, ou até mudar a maneira que se faz a busca do artista, mas nosso querido service não tem nada haver com isso, ele apenas utiliza a INTERFACE, quem faz a implementação não tem nada haver com ele, por isso ele esta **FECHADO** para mudanças mais aberto para novas funcionalidades e novas extenções. Se tiver que mudar, quem irá mudar é o nosso ArtistImplementationService, a implementação pode mudar a vontade, com isso, mudarei apenas aqui e vai refletir em todo lugar que utilizo as interfaces que esta classe implementa.
+> se no futuro eu precisar buscar os artistas pela idade, não so pelo nome, eu posso usar esse mesmo método <b>(findArtist)</b> em uma forma diferente usando o polimorfismo, dai eu não mexeria no atual para caber uma busca por idade dele.
 >
-> ![metodos implementados.png](imgProject%2Fmetodos%20implementados.png)
+>**MANEIRA ERRADA, SEM O USO DO OPEN-CLOSED:**
 > 
-> Estes são os metodos implementados da class ArtistImplementationService, com isso deixo então meu ArtistsService, totalmente fechado para mudança e aberto para novas funcionalidades e etc.
->> Veja, se eu quiser implementar novos metodos, mudar a maneira como se busca artistas, mudar a api de busca, tudo isso eu posso fazer modificando os codigos que estão acima, mas nunca a class ArtistsService.
-
+> Se eu mexesse nesse método e adicionasse um Integer idade, eu estaria ferindo esse principio, posteriormente, teria de mexer também em testes unitarios que eu havia feito na classe e para piorar, poderia impactar o sistema como um todo, deixando de funcionar muita coisa pela necessidade da adição do atributo novo.
+> 
 >**BENEFICIO NA UTILIZAÇÃO DESTE PRINCIPIO:**
->> Codigo mais seguro.
+>> Codigo mais forte e intacto.
 > 
 >> Codigo mais legível e limpo.
 > 
@@ -95,7 +90,7 @@ Exemplo:</p>
 > 
 > ![ArtistsService.png](imgProject%2FArtistsService.png)
 > 
-> Repare o SearchArtists ela é uma interface que tem **ATUALMENTE** (pois pode mudar) a classe de implementação: ArtistImplementationService.
+> Repare o SearchArtists ela é uma interface que tem **ATUALMENTE** a classe de implementação: ArtistImplementationService.
 > 
 > ![LocalImplementationService.png](imgProject%2FLocalImplementationService.png)
 > 
@@ -107,7 +102,7 @@ Exemplo:</p>
 
 >**BENEFICIO NA UTILIZAÇÃO DESTE PRINCIPIO:**
 >
-> Mostra que estamos no caminho certo e que usamos da maneira correta nossa extensão ou implementação.
+>Codigo coeso
 
 <h3 style = "color: greenyellow">  I— Interface Segregation Principle:</h3>
 <p> Este principio diz que não podemos forçar uma classe a utilizar interfaces e metodos que não irão utilizar.<br/>
@@ -116,42 +111,24 @@ Isso mostra mais uma vez que estamos alinhados a todos os principios, vou dar ex
 
 > Vamos imaginar o seguinte cenário:
 > 
-> **Atualmente** temos dentro de domain.service a class ArtistsService, que busca uma lista de artistas e também busca o detalhe de um determinado artista. Pronto, o nosso service atualmente tem essas duas funcionalidades.
+> **Atualmente** temos dentro de domain.service a class ArtistsService, que busca uma lista de artistas e também busca o detalhe de um determinado artista.
 ><br> Além disso temos **ATUALMENTE** 2 interfaces separadas a searchArtists e a ArtistDetail, uma com a função de trazer os artistas e a outra de trazer os detalhes do artista.
 > 
 > ![LocalServiceAndInterfaces.png](imgProject%2FLocalServiceAndInterfaces.png)
 > 
-> Imagina que tivessemos 2 services invés de 1 só. 1 service buscaria por artistas e o outro traria os detalhes de um determinado artista.
+> Imagina que tivessemos 2 services invés de 1 só. Um service buscaria por artistas e o outro traria os detalhes de um determinado artista.
 > <br> E também que tivessemos 1 unica interface com os 2 metodos ArtistDetail e SearchArtists
 > 
 > ![implementationWrong.png](imgProject%2FimplementationWrong.png)
 >
-> <br/> se ambos usasse a interface Artists estaria errado, pois a mesma tem 2 metodos um para buscar os detalhes do artista e um para buscar artistas <br/>
+> <br/> se ambos usasse a interface Artists estariamos ferindo este principio <br/>
 >
 >> ![artistInterface.png](imgProject%2FartistInterface.png)
 >
-> pensa comigo: porque o service de buscar artistas deveria ter consigo a possibilidade de usar o metodo de buscar <b>detalhes do artista</b>? Sendo que a função dele é apenas trazer a lista de artistas <br/>
-> Bem como, porque no service de pesquisar artistas eu deveria ter a implementação que me faça ser capaz usar a busca de artistas? 
+> pensa comigo: porque o service de buscar artistas deveria ter consigo a possibilidade de usar o metodo de buscar <b>detalhes do artista</b>? Sendo que a função dele é apenas trazer a lista de artistas. <br/>
+> Nesse caso estaria sendo inutil o método e a classe de implementação obrigatoriamente teria de implementar os 2 métodos.
 > <br/> Em ambos os casos não fazem sentido.
-
-<h4> Maneira correta de se utilizar: </h4> 
-
->![LocalServiceAndInterfaces.png](imgProject%2FLocalServiceAndInterfaces.png)
->
-> Temos apenas 1 service e 2 interfaces, poderiamos ter 2 services, mas não tem necessidade. O importante é que com isso, ao utilizarmos as interfaces cada uma tem sua devida responsabilidade <br/>
-> e não implemento interfaces que não irei utilizar como no caso passado que o ArtistDetail usava interface que utilizava metodos de busca de artistas. <br/>
 > 
-> ![ArtistsService.png](imgProject%2FArtistsService.png)
-> 
-> Da maneira que se encontra atualmente, se eu quisse criar 2 service como fiz anteriormente, eu porderia, pois cada 1 utilizaria a sua respectiva interface e teria metodos apenas que faça sentido para aquele service.<br/>
-> O service de buscar artista usaria a interface SearchArtists e o service de detalhes do artista usaria a interface ArtistDetail, com isso ele saberia apenas das suas responsabilidades.
-> 
-> Como utilizamos um unico service, deixamos ele mais geranerico, porém o nosso metodo de detalhe do artista usa apenas a interface relevante pra ele e assim por diante.
-> 
-> ![ArtistDetailInterface.png](imgProject%2FArtistDetailInterface.png)
-> 
-> ![SearchArtistsInterface.png](imgProject%2FSearchArtistsInterface.png)
-
 >**BENEFICIO NA UTILIZAÇÃO DESTE PRINCIPIO:**
 > > Economia de codigo e funcionalidade, pois uma classe não utiliza coisas desnecessarias somente o que é necessario pra ela.
 > 
@@ -160,10 +137,7 @@ Isso mostra mais uma vez que estamos alinhados a todos os principios, vou dar ex
 > > Separa as responsabilidades.
 
 <h3 style = "color: red">D — Dependency Inversion Principle</h3>
-<p>Este principio diz sobre a inversão de dependencias e é exatamente o que mais utilizamos neste projeto.
-Basicamente é você deixar seu codigo o mais DESACOPLADO possivel, evitar erros e muitas dependencias entre si. Ou seja, uma classe não pode depender de varias outras. <br/>
-E se essa outra deixar de existir? Ou ser utilizada de uma outra maneira? Com isso, você deveria alterar em todo lugar que depende dessa classe e mudaria a maneira de se fazer. Em resumo, teria um baita trabalhão.
-</p>
+<p>Esse princípio sugere que, em vez de uma classe de alto nível depender diretamente de uma classe de baixo nível, ambas devem depender de uma interface ou abstração comum. Isso facilita a substituição de dependências e torna o código mais flexível.</p>
 
 > 
 >Exemplo de utilização:
@@ -171,14 +145,15 @@ E se essa outra deixar de existir? Ou ser utilizada de uma outra maneira? Com is
 > ![ArtistsService.png](imgProject%2FArtistsService.png)
 > 
 > Veja nosso ArtistsService, totalmente desacoplado.
-> <br> Apesar da implementação dos metodos utilizados no service esta na class: ArtistImplementationService, nosso querido ArtistsService não depende dela. 
+> <br> Apesar da implementação dos metodos utilizados no service esta na class **ArtistImplementationService**, nosso querido ArtistsService não depende dela.
+> Neste contexto o **ArtistsService** é a classe de alto nivel, e o **ArtistImplementationService** é a de baixo nivel.
 >
 > ![LocalImplementationService.png](imgProject%2FLocalImplementationService.png)
 >
->Ou seja, se hoje ou amanhã ela deixar de ser utilizada, não implementar mais a busca dos artistas ou o detalhe do artista, deixar de existir ou funcionar, ainda sim o ArtistService irá ta firme e forte, pois teremos outra classe que implementará as nossas interfaces: SearchArtists e ArtistDetail.
+>Como pode ver nosso service utilizamos a interface **SearchArtists** e a **ArtistDetail**, fazendo com que não dependessemos das classes de implementação dessas interfaces (baixo nivel).
+> Ou seja, se amanhã ou depois mudar a maneira de implementar essas buscas, nosso service ainda estará intacto o que vai mudar é apenas a classe de implementação. Sendo assim nosso codigo fica protegido e ainda é rebusto com grande possibilidade de crescimento e expansão.
 ><br/> Isso é o que chamamos de inversão de dependencia, meu service deixou de depender da implementação e passou a utilizar interfaces que poderão ser implementadas por qualquer classe.
 > <br/> Hoje as nossas interfaces são implementadas pela class ArtistImplementationService, mas se ela for descontinuada, podemos utilizar outras classes de implementação e ela passará a funcionar da maneira nova, com nova implementação. 
-> <br> o mais legal disso, é que o nosso service não vai mudar nada, vai continuar da mesma maneira. Por isso há essa inversão de dependecia: Service não depende mais da implementação.
 >
 >**BENEFICIO NA UTILIZAÇÃO DESTE PRINCIPIO:**
 > 
@@ -191,3 +166,5 @@ E se essa outra deixar de existir? Ou ser utilizada de uma outra maneira? Com is
 > > Separa as responsabilidades, ficando mais legivel o codigo.
 > 
 > > Pode ter muitas implementações, deixando ele apto para crescer.
+> 
+> >Codigo limpo
