@@ -150,7 +150,7 @@ Isso mostra mais uma vez que estamos alinhados a todos os principios, vou dar ex
 >
 > ![LocalImplementationService.png](imgProject%2FLocalImplementationService.png)
 >
->Como pode ver nosso service utilizamos a interface **SearchArtists** e a **ArtistDetail**, fazendo com que não dependessemos das classes de implementação dessas interfaces (baixo nivel).
+>Como pode ver no nosso service, utilizamos a interface **SearchArtists** e a **ArtistDetail**, fazendo com que não dependessemos das classes de implementação dessas interfaces (baixo nivel).
 > Ou seja, se amanhã ou depois mudar a maneira de implementar essas buscas, nosso service ainda estará intacto o que vai mudar é apenas a classe de implementação. Sendo assim nosso codigo fica protegido e ainda é rebusto com grande possibilidade de crescimento e expansão.
 ><br/> Isso é o que chamamos de inversão de dependencia, meu service deixou de depender da implementação e passou a utilizar interfaces que poderão ser implementadas por qualquer classe.
 > <br/> Hoje as nossas interfaces são implementadas pela class ArtistImplementationService, mas se ela for descontinuada, podemos utilizar outras classes de implementação e ela passará a funcionar da maneira nova, com nova implementação. 
